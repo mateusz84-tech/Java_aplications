@@ -24,4 +24,16 @@ public class StudentTest {
         Student student = new Student("   ");
     }
 
+    @Test
+    public void getNameTest(){
+        Student student = new Student("Jan");
+        assertEquals("Jan",student.getName());
+    }
+    @Test
+    public void setGradeTest(){
+        Student student = new Student("Ala");
+        student.setGrade(95);
+        assertEquals(95,student.getGrade());
+    }
+
 }
