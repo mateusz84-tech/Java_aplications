@@ -5,21 +5,14 @@ public class Student {
     private final String name;
     private int grade;
 
-    public Student(String name, int grade){
+    public Student(String name){
         if(name == null){
             throw new IllegalArgumentException("Imię nie może być nulem.");
         }
         if(name.isEmpty() || name.isBlank()){
             throw new IllegalArgumentException("Imię nie może być puste.");
         }
-        if(grade < 0){
-            throw new IllegalArgumentException("Wynik musi być większy od zera.");
-        }
-        if(grade > 100){
-            throw new IllegalArgumentException("Maksymalny wynik 100.");
-        }
         this.name = name;
-        this.grade = grade;
     }
 
     public String getName() {
