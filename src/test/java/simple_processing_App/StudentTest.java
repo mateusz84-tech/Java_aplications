@@ -35,5 +35,24 @@ public class StudentTest {
         student.setGrade(95);
         assertEquals(95,student.getGrade());
     }
+    @Test
+    public void setGradeTestBoundaryValues(){
+        Student student = new Student("Jan");
+        student.setGrade(0);
+        assertEquals(0,student.getGrade());
+        student.setGrade(100);
+        assertEquals(100, student.getGrade());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void setGradeTestWithToLessValues(){
+        Student student = new Student("Jan");
+        student.setGrade(-1);
+    }
+    @Test(expected = IllegalArgumentException.class)
+    public void setGradeTestWithThanMoreValue(){
+        Student student = new Student("Jan");
+        student.setGrade(101);
+    }
 
 }
