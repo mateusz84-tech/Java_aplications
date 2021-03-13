@@ -30,6 +30,10 @@ public class App {
                 case 2: {
                     FunctionManager.assignExamGrade(list);
                 }break;
+
+                case 3: {
+                    FunctionManager.findStudentByName(list);
+                }break;
                 default:
                     System.out.println("Brak takiej opcji.");
             }
