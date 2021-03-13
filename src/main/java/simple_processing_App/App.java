@@ -11,22 +11,28 @@ public class App {
         Scanner inputChose = new Scanner(System.in);
         List<Student> list = new ArrayList<>();
 
-        DisplayMenu.display();
+        for(;;) {
+            DisplayMenu.display();
 
-        System.out.printf("%s: ","Wybierz");
-        while(!inputChose.hasNextInt()){
-            inputChose.next();
-            System.out.println("Niepoprawny wybór. Spróbuj jeszcze raz: ");
-        }
-        int chose = inputChose.nextInt();
+            System.out.printf("%s: ", "Wybierz");
+            while (!inputChose.hasNextInt()) {
+                inputChose.next();
+                System.out.println("Niepoprawny wybór. Spróbuj jeszcze raz: ");
+            }
+            int chose = inputChose.nextInt();
 
-        switch (chose){
-            case 1:{
-                FunctionManager.addNewStudent(list);
-            }break;
+            switch (chose) {
+                case 1: {
+                    FunctionManager.addNewStudent(list);
+                }
+                break;
 
-            default:
-                System.out.println("Brak takiej opcji.");
+                case 2: {
+                    FunctionManager.assignExamGrade(list);
+                }break;
+                default:
+                    System.out.println("Brak takiej opcji.");
+            }
         }
 
     }
