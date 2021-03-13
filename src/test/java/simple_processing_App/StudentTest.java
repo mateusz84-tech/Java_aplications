@@ -1,16 +1,24 @@
 package simple_processing_App;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 public class StudentTest {
 
+    private Student student;
+
+    @Before
+    public void create(){
+        student = new Student("Jan");
+    }
+
     @Test
     public void createStudent(){
-        Student student = new Student("Name");
-        assertEquals("Name", student.getName());
+        assertEquals("Jan",student.getName());
     }
+
     @Test(expected = IllegalArgumentException.class)
     public void createStudentWithNullValue(){
         Student student = new Student(null);
@@ -25,19 +33,12 @@ public class StudentTest {
     }
 
     @Test
-    public void getNameTest(){
-        Student student = new Student("Jan");
-        assertEquals("Jan",student.getName());
-    }
-    @Test
     public void setGradeTest(){
-        Student student = new Student("Ala");
         student.setGrade(95);
         assertEquals(95,student.getGrade());
     }
     @Test
     public void setGradeTestBoundaryValues(){
-        Student student = new Student("Jan");
         student.setGrade(0);
         assertEquals(0,student.getGrade());
         student.setGrade(100);
@@ -46,12 +47,10 @@ public class StudentTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void setGradeTestWithToLessValues(){
-        Student student = new Student("Jan");
         student.setGrade(-1);
     }
     @Test(expected = IllegalArgumentException.class)
     public void setGradeTestWithThanMoreValue(){
-        Student student = new Student("Jan");
         student.setGrade(101);
     }
 
