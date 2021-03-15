@@ -58,4 +58,11 @@ public class FunctionManager {
                 .filter(st -> st.getName().equalsIgnoreCase(name))
                 .forEach(System.out::println);
     }
+
+    public static void displayAllStudents(List<Student> list){
+
+        System.out.println("Lista studentów");
+        list.forEach(System.out::println);
+    }
+
 }

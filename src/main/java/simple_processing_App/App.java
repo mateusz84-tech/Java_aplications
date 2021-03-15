@@ -34,10 +34,12 @@ public class App {
                 case 3: {
                     FunctionManager.findStudentByName(list);
                 }break;
+                case 4: {
+                    FunctionManager.displayAllStudents(list);
+                }break;
                 default:
                     System.out.println("Brak takiej opcji.");
             }
         }
-
     }
 }
