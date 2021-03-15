@@ -37,6 +37,14 @@ public class App {
                 case 4: {
                     FunctionManager.displayAllStudents(list);
                 }break;
+                case 5: {
+                    FunctionManager.displayAverageGrade(list);
+                }break;
+
+                case 9: {
+                    System.out.println("Dziękuje za skorzystanie z programu.");
+                    System.exit(0);
+                }
                 default:
                     System.out.println("Brak takiej opcji.");
             }

@@ -65,4 +65,14 @@ public class FunctionManager {
         list.forEach(System.out::println);
     }
 
+    // wyświetla średnią z egzaminu
+    public static void displayAverageGrade(List<Student> list){
+        short sum = 0;
+
+        for(Student student : list){
+            sum += student.getGrade();
+        }
+        System.out.printf("%s %.2f%n","Średnia wynosi",
+                (double)(sum / list.size()));
+    }
 }
