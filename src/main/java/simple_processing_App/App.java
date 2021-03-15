@@ -40,6 +40,9 @@ public class App {
                 case 5: {
                     FunctionManager.displayAverageGrade(list);
                 }break;
+                case 6: {
+                    FunctionManager.showStudentWithMaxGrade(list);
+                }break;
 
                 case 9: {
                     System.out.println("Dziękuje za skorzystanie z programu.");
