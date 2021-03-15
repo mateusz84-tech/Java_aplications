@@ -33,7 +33,7 @@ public class FunctionManager {
         }
         String name = input.next();
         for(Student student : list){
-            if(student.getName().equals(name)){
+            if(student.getName().equalsIgnoreCase(name)){
                 System.out.print("Przypisz ocenę: ");
                 while(!input.hasNextInt()) {
                     input.nextInt();
@@ -74,5 +74,17 @@ public class FunctionManager {
         }
         System.out.printf("%s %.2f%n","Średnia wynosi",
                 (double)(sum / list.size()));
+    }
+
+    public static void showStudentWithMaxGrade(List<Student> list){
+        Student maxGrade = list.get(1);
+        for(Student student : list){
+            if(maxGrade.getGrade() < student.getGrade()){
+                maxGrade.setGrade(student.getGrade());
+            }
+        }
+        Student student1 = new Student(maxGrade.getName());
+        System.out.printf("%s %s %s %d%n","Imię ",student1.getName(),
+                "Wynik",maxGrade.getGrade());
     }
 }
