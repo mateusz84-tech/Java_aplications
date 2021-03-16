@@ -1,7 +1,6 @@
 package simple_processing_App;
 
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class FunctionManager {
 
@@ -77,14 +76,28 @@ public class FunctionManager {
     }
 
     public static void showStudentWithMaxGrade(List<Student> list){
-        Student maxGrade = list.get(1);
+
+        Optional<Student> grade = list.stream()
+                .max((student, t1) -> {
+                    if (student.getGrade() < t1.getGrade()) {
+                        student.setGrade(t1.getGrade());
+                    }
+                    return 0;
+                });
+        System.out.println("Wynik: " + grade.get().getGrade());
+
+    }
+
+    // todo dokończyć wyznaczanie studenta z najniższą oceną
+    public static void showStudentWithMinGrade(List<Student> list){
+        Student minGrade = list.get(1);
         for(Student student : list){
-            if(maxGrade.getGrade() < student.getGrade()){
-                maxGrade.setGrade(student.getGrade());
+            if(minGrade.getGrade() > student.getGrade()){
+                minGrade.setGrade(student.getGrade());
             }
         }
-        Student student1 = new Student(maxGrade.getName());
-        System.out.printf("%s %s %s %d%n","Imię ",student1.getName(),
-                "Wynik",maxGrade.getGrade());
+        Student studentMin = new Student(minGrade.getName());
+        System.out.printf("%s %s %s %d%n","Imię",studentMin.getGrade(),
+                                            "Wynik",studentMin.getGrade());
     }
 }
