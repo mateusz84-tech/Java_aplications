@@ -88,16 +88,15 @@ public class FunctionManager {
 
     }
 
-    // todo dokończyć wyznaczanie studenta z najniższą oceną
     public static void showStudentWithMinGrade(List<Student> list){
-        Student minGrade = list.get(1);
-        for(Student student : list){
-            if(minGrade.getGrade() > student.getGrade()){
-                minGrade.setGrade(student.getGrade());
-            }
-        }
-        Student studentMin = new Student(minGrade.getName());
-        System.out.printf("%s %s %s %d%n","Imię",studentMin.getGrade(),
-                                            "Wynik",studentMin.getGrade());
+
+        Optional<Student> grade = list.stream()
+                .min((student, t1) -> {
+                    if(student.getGrade() > t1.getGrade()){
+                        student.setGrade(t1.getGrade());
+                    }
+                    return 0;
+                });
+        System.out.println("Wynik: " + grade.get().getGrade());
     }
 }
