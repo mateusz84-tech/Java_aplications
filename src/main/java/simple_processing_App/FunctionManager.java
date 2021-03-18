@@ -108,7 +108,13 @@ public class FunctionManager {
             System.out.print("Niewłaściwe dane. Wpisz poprawnie imię.");
         }
         String name = input.next();
-        list.removeIf(student -> student.getName().equalsIgnoreCase(name));
-        System.out.println("Usunięto studenta z listy.");
+        if(list.size() == 0) {
+            System.out.println("Lista studentów jest pusta nie ma kogo usunąć.");
+        }
+        else{
+            list.removeIf(student -> student.getName().equalsIgnoreCase(name));
+            System.out.println("Usunięto studenta z listy.");
+        }
+
     }
 }
