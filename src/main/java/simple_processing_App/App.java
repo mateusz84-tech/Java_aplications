@@ -49,6 +49,9 @@ public class App {
                 case 8: {
                     FunctionManager.deleteStudent(list);
                 }break;
+                case 9: {
+                    FunctionManager.displayGraph(list);
+                }break;
 
                 case 10: {
                     System.out.println("Dziękuje za skorzystanie z programu.");
