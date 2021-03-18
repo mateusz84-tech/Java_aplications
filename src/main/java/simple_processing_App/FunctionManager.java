@@ -99,4 +99,16 @@ public class FunctionManager {
                 });
         System.out.println("Wynik: " + grade.get().getGrade());
     }
+
+    public static void deleteStudent(List<Student> list){
+        Scanner input = new Scanner(System.in);
+        System.out.printf("%s: ","Wyszukaj studenta po imieniu");
+        while(!input.hasNext("\\D{3,15}+")){
+            input.next();
+            System.out.print("Niewłaściwe dane. Wpisz poprawnie imię.");
+        }
+        String name = input.next();
+        list.removeIf(student -> student.getName().equalsIgnoreCase(name));
+        System.out.println("Usunięto studenta z listy.");
+    }
 }
