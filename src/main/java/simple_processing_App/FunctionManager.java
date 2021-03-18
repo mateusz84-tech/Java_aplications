@@ -117,4 +117,61 @@ public class FunctionManager {
         }
 
     }
+
+    public static void displayGraph(List<Student> list){
+
+        int[] arrayGrade = new int[11];
+        // przypisanie do tablicy ilości ocen z danego zakresu
+        for(Student student : list){
+            if(student.getGrade() > 0 && student.getGrade() < 10){
+                arrayGrade[0]++;
+            }
+            if(student.getGrade() > 9 && student.getGrade() <= 19){
+                arrayGrade[1]++;
+            }
+            if(student.getGrade() > 19 && student.getGrade() <= 29){
+                arrayGrade[2]++;
+            }
+            if(student.getGrade() > 29 && student.getGrade() <= 39){
+                arrayGrade[3]++;
+            }
+            if(student.getGrade() > 39 && student.getGrade() <= 49){
+                arrayGrade[4]++;
+            }
+            if(student.getGrade() > 49 && student.getGrade() <= 59){
+                arrayGrade[5]++;
+            }
+            if(student.getGrade() > 59 && student.getGrade() <= 69){
+                arrayGrade[6]++;
+            }
+            if(student.getGrade() > 69 && student.getGrade() <= 79){
+                arrayGrade[7]++;
+            }if(student.getGrade() > 79 && student.getGrade() <= 89){
+                arrayGrade[8]++;
+            }
+            if(student.getGrade() > 89 && student.getGrade() <= 99){
+                arrayGrade[9]++;
+            }
+            if(student.getGrade() == 100){
+                arrayGrade[10]++;
+            }
+        }
+
+        // wyświetlanie zakresu ocen
+        System.out.println("Wykres z ocenami.");
+        for(int i=0; i< 11; i++){
+            if(i == 10){
+                System.out.printf("%7d: ", 100);
+            }
+            else{
+                System.out.printf("%02d-%02d: ",
+                        i * 10, i * 10 + 9);
+            }
+            // wyświetlenie odpowiedniej ilości gwiazdek przy danym zakresie oceny
+            for(int stars=0; stars<arrayGrade[i]; stars++){
+                System.out.print("* ");
+            }
+            System.out.println();
+        }
+    }
 }
