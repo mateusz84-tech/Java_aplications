@@ -46,8 +46,11 @@ public class App {
                 case 7: {
                     FunctionManager.showStudentWithMinGrade(list);
                 }break;
+                case 8: {
+                    FunctionManager.deleteStudent(list);
+                }break;
 
-                case 9: {
+                case 10: {
                     System.out.println("Dziękuje za skorzystanie z programu.");
                     System.exit(0);
                 }
