@@ -1,6 +1,7 @@
 package simple_processing_App;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class FunctionManager {
 
@@ -84,20 +85,20 @@ public class FunctionManager {
                     }
                     return 0;
                 });
-        System.out.println("Wynik: " + grade.get().getGrade());
+        System.out.println("Wynik: " + grade);
 
     }
 
     public static void showStudentWithMinGrade(List<Student> list){
 
-        Optional<Student> grade = list.stream()
+        Optional<Student> note = list.stream()
                 .min((student, t1) -> {
-                    if(student.getGrade() > t1.getGrade()){
+                    if(student.getGrade() > t1.getGrade()) {
                         student.setGrade(t1.getGrade());
                     }
                     return 0;
                 });
-        System.out.println("Wynik: " + grade.get().getGrade());
+        System.out.println("Wynik: " + note);
     }
 
     public static void deleteStudent(List<Student> list){
