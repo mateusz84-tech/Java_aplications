@@ -14,10 +14,10 @@ public class Student {
         if(id < 0 ){
             throw new IllegalArgumentException("Id nie może być ujemne.");
         }
-        if(firstName.isEmpty() || firstName.isBlank() || firstName == null){
+        if(firstName.isEmpty() || firstName.isBlank()){
             throw new IllegalArgumentException("Błędne dane");
         }
-        if(lastName.isEmpty() || lastName.isBlank() || lastName == null){
+        if(lastName.isEmpty() || lastName.isBlank()){
             throw new IllegalArgumentException("Błędne dane");
         }
         if(note < 0 || note > 100){
