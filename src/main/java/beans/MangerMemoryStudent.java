@@ -1,8 +1,11 @@
 package beans;
 
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class MangerMemoryStudent implements ServiceStudent{
 
     private List<Student> studentList = new ArrayList<>();
