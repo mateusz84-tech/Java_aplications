@@ -19,6 +19,8 @@ public class DiAppContext {
         student.addStudent(new Student(3,"Aga","Bąk",95));
 
         student.displayAll();
+        student.removeStudent(1);
+        student.displayAll();
 
     }
 }
