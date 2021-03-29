@@ -1,7 +1,10 @@
 package beans;
 
+import org.springframework.stereotype.Component;
+
 import java.time.LocalDateTime;
 
+@Component
 public class SimpleLogTime implements LogService{
 
     @Override
