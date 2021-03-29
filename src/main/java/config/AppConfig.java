@@ -1,6 +1,8 @@
 package config;
 
+import beans.LogService;
 import beans.MangerMemoryStudent;
+import beans.SimpleLogTime;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -8,7 +10,11 @@ import org.springframework.context.annotation.Configuration;
 public class AppConfig {
 
     @Bean
+    public LogService logService(){
+        return new SimpleLogTime();
+    }
+    @Bean
     public MangerMemoryStudent memoryStudent(){
-        return new MangerMemoryStudent();
+        return new MangerMemoryStudent(logService());
     }
 }
