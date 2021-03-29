@@ -31,7 +31,7 @@ public class MangerMemoryStudent implements ServiceStudent{
             throw new IllegalArgumentException("Błędne dane");
         }
         else{
-            studentList.remove(id);
+            studentList.remove(id-1);
             logService.log();
             System.out.println("Usunięto studenta o id: " + studentList.get(id).getId());
         }
