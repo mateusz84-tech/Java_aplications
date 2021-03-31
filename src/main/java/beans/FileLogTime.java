@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 @Component
 public class FileLogTime implements LogService{
 
-    private String fileName;
+    private final String fileName;
 
     public FileLogTime(String fileName) {
         this.fileName = fileName;
@@ -23,7 +23,7 @@ public class FileLogTime implements LogService{
             writer.println(dateTime.getHour() + ":" + dateTime.getMinute() + ":" + dateTime.getSecond());
             writer.close();
 
-        }catch (IOException exc){
+        }catch (FileNotFoundException exc){
             System.out.println("Błąd pliku");
         }
     }
