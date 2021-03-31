@@ -1,10 +1,12 @@
 package config;
 
+import beans.FileLogTime;
 import beans.LogService;
 import beans.MangerMemoryStudent;
 import beans.SimpleLogTime;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 
 @Configuration
 public class AppConfig {
@@ -14,7 +16,13 @@ public class AppConfig {
         return new SimpleLogTime();
     }
     @Bean
-    public MangerMemoryStudent memoryStudent(){
-        return new MangerMemoryStudent(logService());
+    public LogService fileLogService(){
+        return new FileLogTime("log.txt");
     }
+    @Bean
+    public MangerMemoryStudent memoryStudent(){
+        return new MangerMemoryStudent(fileLogService());
+    }
+
+
 }
