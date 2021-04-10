@@ -1,5 +1,7 @@
 package beans;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.io.*;
@@ -10,6 +12,7 @@ public class FileLogTime implements LogService{
 
     private final String fileName;
 
+    @Autowired
     public FileLogTime(String fileName) {
         this.fileName = fileName;
     }
