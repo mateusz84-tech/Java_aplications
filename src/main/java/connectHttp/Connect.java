@@ -10,6 +10,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Scanner;
 
+
 public class Connect {
 
     public static void main(String[] args){
@@ -20,7 +21,7 @@ public class Connect {
             HttpClient client = HttpClient.newHttpClient();
             HttpResponse<String> response = client.send(
                     HttpRequest.newBuilder()
-                            .uri(URI.create("https://theysaidso.com/quote/larry-page-if-youre-changing-the-world-youre-working-on-important-things-youre-e"))
+                            .uri(URI.create("https://theysaidso.com/quote-of-the-day/inspire"))
                             .GET()
                             .build(),
                     HttpResponse.BodyHandlers.ofString());
@@ -50,20 +51,23 @@ public class Connect {
     // funkcja odczytująca z pliku cytatu
     public static void readQuoteWithFile(String fileName){
         String quote = "";
+        int lineCount = 0;
         File readFile = new File(fileName);
         try {
-            Scanner scan = new Scanner(readFile);
+            Scanner scan  = new Scanner(readFile);
             while(scan.hasNextLine()){
-                if(scan.nextLine().contains("<div class=\"card-body\">")) {
+                String line = scan.nextLine();
+                lineCount ++;
+                if(lineCount == 435){
                     quote = scan.nextLine();
-                    String quoteOfTheDay = quote.substring(22,quote.length()-4);
-                    System.out.printf("%10s",quoteOfTheDay);
-                    break;
                 }
             }
+            System.out.println("Ilość linii = " + lineCount);
+            System.out.println("Szukana linia: " + quote);
         }catch (FileNotFoundException exc){
             System.out.println("Błąd pliku");
             exc.printStackTrace();
         }
+
     }
 }
