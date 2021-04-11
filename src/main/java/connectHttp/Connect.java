@@ -9,6 +9,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class Connect {
 
@@ -75,6 +76,18 @@ public class Connect {
             System.out.println("Błąd pliku");
             exc.printStackTrace();
         }
-
+    }
+    // funkcja pomocnicza do szukania cytatu z tekstu po rozdzieleniu tekstu ogranicznikami <>
+    public String resultOfSearchQuoteWithString(String text){
+        String quote = "";
+        int count = 0;
+        StringTokenizer tokenizer = new StringTokenizer(text,"><");
+        while (tokenizer.hasMoreElements()){
+            count++;
+            if(count == 2){
+                quote = tokenizer.nextToken();
+            }
+        }
+        return quote;
     }
 }
