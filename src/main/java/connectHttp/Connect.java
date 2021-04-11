@@ -8,9 +8,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.Arrays;
 import java.util.Scanner;
-
 
 public class Connect {
 
@@ -34,7 +32,7 @@ public class Connect {
             System.out.println("Błąd połączenia ze stroną.");
         }
 
-        // zapis do pliku zawartość strony
+        // zapisanie do pliku zawartość strony
         try {
             FileWriter writer = new FileWriter("quote.txt");
             writer.write(pageBody);
@@ -49,7 +47,7 @@ public class Connect {
         readQuoteWithFile("quote.txt");
     }
 
-    // funkcja odczytująca z pliku cytatu
+    // funkcja analizująca tekst w pliku, wyszukuje cytat dnia i jego autora
     public static void readQuoteWithFile(String fileName){
         String quote = "";      // do przechowywania cytatu;
         int lineCount = 0;      // do zliczania linii w tekście
