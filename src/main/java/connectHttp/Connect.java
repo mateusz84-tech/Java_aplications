@@ -8,6 +8,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Arrays;
 import java.util.Scanner;
 
 
@@ -52,6 +53,7 @@ public class Connect {
     public static void readQuoteWithFile(String fileName){
         String quote = "";
         int lineCount = 0;
+        String[] splitText = new String[2];
         File readFile = new File(fileName);
         try {
             Scanner scan  = new Scanner(readFile);
@@ -60,10 +62,10 @@ public class Connect {
                 lineCount ++;
                 if(lineCount == 435){
                     quote = scan.nextLine();
+                    splitText = quote.split("title=\"Quote by",2);
                 }
             }
-            System.out.println("Ilość linii = " + lineCount);
-            System.out.println("Szukana linia: " + quote);
+            System.out.println(splitText[1]);
         }catch (FileNotFoundException exc){
             System.out.println("Błąd pliku");
             exc.printStackTrace();
