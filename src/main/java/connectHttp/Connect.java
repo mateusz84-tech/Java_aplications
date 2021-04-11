@@ -51,9 +51,11 @@ public class Connect {
 
     // funkcja odczytująca z pliku cytatu
     public static void readQuoteWithFile(String fileName){
-        String quote = "";
-        int lineCount = 0;
-        String[] splitText = new String[2];
+        String quote = "";      // do przechowywania cytatu;
+        int lineCount = 0;      // do zliczania linii w tekście
+        String[] splitSearchedLine = new String[2];     // tablica napisów dla szukanej linii, podzielonej wg. wzoru
+        String[] splitSearchAuthor = new String[2];     // tablica napisów z podziału tekstu dla wyszukania autora
+        String[] splitSearchQuote = new String[2];      // tablica napisów z podziału tekstu dla wyszukania cytatu
         File readFile = new File(fileName);
         try {
             Scanner scan  = new Scanner(readFile);
@@ -62,10 +64,15 @@ public class Connect {
                 lineCount ++;
                 if(lineCount == 435){
                     quote = scan.nextLine();
-                    splitText = quote.split("title=\"Quote by",2);
+                    splitSearchedLine = quote.split("title=\"Quote by",2);
+                    splitSearchAuthor = splitSearchedLine[1].split("\">");
+                    splitSearchQuote = splitSearchAuthor[1].split("</a></p> -");
                 }
             }
-            System.out.println(splitText[1]);
+            //Wyświetlenie cytatu i autora
+            System.out.printf("%s%n",splitSearchQuote[0]);
+            System.out.printf("%35s: %s","Autor",splitSearchAuthor[0]);
+
         }catch (FileNotFoundException exc){
             System.out.println("Błąd pliku");
             exc.printStackTrace();
