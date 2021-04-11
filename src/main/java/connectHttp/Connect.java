@@ -81,6 +81,7 @@ public class Connect {
     public String resultOfSearchQuoteWithString(String text){
         String quote = "";
         int count = 0;
+        // podział tekstu na 6 części, trzecia część to cytat z wyszukanego wiersza w wcześniejszej metodzie
         StringTokenizer tokenizer = new StringTokenizer(text,"><");
         while (tokenizer.hasMoreElements()){
             count++;
