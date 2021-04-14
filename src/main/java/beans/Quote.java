@@ -61,6 +61,6 @@ public class Quote {
         }catch (FileNotFoundException exc){
             exc.printStackTrace();
         }
-        return "Połączono: " + quote + " " + author;
+        return quote + " " + author;
     }
 }
