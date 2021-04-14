@@ -8,6 +8,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
@@ -52,9 +53,6 @@ public class Connect {
     public static void readQuoteWithFile(String fileName){
         String quote = "";      // do przechowywania cytatu;
         int lineCount = 0;      // do zliczania linii w tekście
-        String[] splitSearchedLine = new String[2];     // tablica napisów dla szukanej linii, podzielonej wg. wzoru
-        String[] splitSearchAuthor = new String[2];     // tablica napisów z podziału tekstu dla wyszukania autora
-        String[] splitSearchQuote = new String[2];      // tablica napisów z podziału tekstu dla wyszukania cytatu
         File readFile = new File(fileName);
         try {
             Scanner scan  = new Scanner(readFile);
@@ -63,14 +61,13 @@ public class Connect {
                 lineCount ++;
                 if(lineCount == 435){
                     quote = scan.nextLine();
-                    splitSearchedLine = quote.split("title=\"Quote by",2);
-                    splitSearchAuthor = splitSearchedLine[1].split("\">");
-                    splitSearchQuote = splitSearchAuthor[1].split("</a></p> -");
+                    String[] splitSearchedQuote = quote.split("((<p)|(>)|(</a>)|(title=))+");
+                    System.out.println();
+                    String[] splitSearchedAuthor = splitSearchedQuote[3].split((" "));
+                    System.out.printf("%s%n", splitSearchedQuote[4]);
+                    System.out.printf("%45s: %s %s","Autor",splitSearchedAuthor[2],splitSearchedAuthor[3]);
                 }
             }
-            //Wyświetlenie cytatu i autora
-            System.out.printf("%s%n",splitSearchQuote[0]);
-            System.out.printf("%35s: %s","Autor",splitSearchAuthor[0]);
 
         }catch (FileNotFoundException exc){
             System.out.println("Błąd pliku");
