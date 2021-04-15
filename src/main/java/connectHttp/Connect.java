@@ -8,7 +8,6 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.Arrays;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
@@ -63,10 +62,12 @@ public class Connect {
                     quote = scan.nextLine();
                     String[] splitSearchedQuote = quote.split("((<p)|(>)|(</a>)|(title=\"Quote by ))+");
                     System.out.println();
-                    String[] splitSearchedAuthor = splitSearchedQuote[3].split((" "));
+                    String[] splitSearchedAuthor = splitSearchedQuote[3].split("(\" )*");
                     System.out.printf("%s%n", splitSearchedQuote[4]);
                     System.out.printf("%45s","Author: ");
+                    int breakPoint = splitSearchedAuthor.length-1;
                     for(int i=0; i< splitSearchedAuthor.length;  i++){
+                        if(splitSearchedAuthor[i].equals("\"")) break;
                         System.out.printf("%s ",splitSearchedAuthor[i]);
                     }
                 }
