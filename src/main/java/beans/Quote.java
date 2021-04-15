@@ -52,8 +52,8 @@ public class Quote {
                 lineCount++;
                 if(lineCount == 435){
                     quote = scan.nextLine();
-                    String[] splitsSearchedQuote = quote.split("((<p)|(>)|(</a>)|(title=))+");
-                    String[] splitSearchedAuthor = splitsSearchedQuote[4].split(" ");
+                    String[] splitsSearchedQuote = quote.split("((<p)|(>)|(</a>)|(title=\"Quote by ))+");
+                    String[] splitSearchedAuthor = splitsSearchedQuote[4].split("( \")+");
                     quote = splitsSearchedQuote[4];
                     author = splitSearchedAuthor[2];
                 }
