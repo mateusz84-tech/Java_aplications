@@ -61,11 +61,14 @@ public class Connect {
                 lineCount ++;
                 if(lineCount == 435){
                     quote = scan.nextLine();
-                    String[] splitSearchedQuote = quote.split("((<p)|(>)|(</a>)|(title=))+");
+                    String[] splitSearchedQuote = quote.split("((<p)|(>)|(</a>)|(title=\"Quote by ))+");
                     System.out.println();
                     String[] splitSearchedAuthor = splitSearchedQuote[3].split((" "));
                     System.out.printf("%s%n", splitSearchedQuote[4]);
-                    System.out.printf("%45s: %s %s","Autor",splitSearchedAuthor[2],splitSearchedAuthor[3]);
+                    System.out.printf("%45s","Author: ");
+                    for(int i=0; i< splitSearchedAuthor.length;  i++){
+                        System.out.printf("%s ",splitSearchedAuthor[i]);
+                    }
                 }
             }
 
