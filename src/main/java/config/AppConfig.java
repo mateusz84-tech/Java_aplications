@@ -1,6 +1,7 @@
 package config;
 
 import beans.*;
+import beans.shopApp.Product;
 import org.springframework.context.annotation.*;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -38,6 +39,11 @@ public class AppConfig{
     @Bean
     public Quote quote(){
         return new Quote();
+    }
+
+    @Bean
+    public Product product(){
+        return new Product("Cukier",3,4.0);
     }
 
 }
