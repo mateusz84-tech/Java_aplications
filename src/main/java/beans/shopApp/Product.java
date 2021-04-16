@@ -34,6 +34,9 @@ public class Product {
     }
 
     public void setQuantity(int quantity) {
+        if(quantity < 0){
+            throw new IllegalArgumentException("Ilość nie może być ujemna.");
+        }
         this.quantity = quantity;
     }
 
@@ -42,6 +45,9 @@ public class Product {
     }
 
     public void setPrice(double price) {
+        if(price < 0.0){
+            throw new IllegalArgumentException("Cena nie może być ujemna.");
+        }
         this.price = price;
     }
 
