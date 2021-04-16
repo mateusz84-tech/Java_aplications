@@ -18,7 +18,11 @@ public class DiAppContext {
 //        memoryStudent.showListSize();
 
         Quote quote = context.getBean("quote",Quote.class);
-        System.out.println(quote.returnQuoteAndAutor());
+        quote.saveTOFile();
+        quote.searchQuoteAndAutor();
+        System.out.println("Cytat: " + quote.getQuote());
+        System.out.println("Autor: " + quote.getAuthor());
+
     }
 
 }
