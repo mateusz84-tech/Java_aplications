@@ -2,6 +2,8 @@ package beans.shopApp;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 public class Order {
 
@@ -25,5 +27,14 @@ public class Order {
             value += price.calculateValue();
         }
         return String.format("%s %40.02f zł.","Razem",value);
+    }
+    // metoda usuwająca pozycję z listy
+    public void deleteProduct(String name){
+        for(Product product : productsList){
+            if(!product.getProductName().equals(name)){
+                break;
+            }
+        }
+        productsList.removeIf(products -> products.getProductName().equals(name));
     }
 }
