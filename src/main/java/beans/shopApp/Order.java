@@ -24,6 +24,6 @@ public class Order {
         for(Product price : productsList){
             value += price.calculateValue();
         }
-        return String.format("%.02f zł.",value);
+        return String.format("%s %40.02f zł.","Razem",value);
     }
 }
