@@ -57,7 +57,7 @@ public class Product {
 
     @Override
     public String toString(){
-        return String.format("%s %25.02f zł %5d szt. %10.02f zł.%n",
+        return String.format("%s %15.02f zł %4d szt. %10.02f zł.%n",
                 getProductName(),getPrice(), getQuantity(),calculateValue());
     }
 }
