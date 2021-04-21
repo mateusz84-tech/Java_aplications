@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Scanner;
 
 public class AppDB {
 
@@ -30,8 +31,18 @@ public class AppDB {
     }
     public static void main(String[] args) {
 
+        Scanner input = new Scanner(System.in);
+
         final String GET_ALL = "SELECT * FROM theaters";
 
         displayAll("db_mk",GET_ALL);
+
+        System.out.println();
+        System.out.printf("%45s%n","=========== MENU ===========");
+        System.out.printf("%25s - %-5s%n","e","Edycja");
+        System.out.printf("%25s - %-5s%n","u","Usuń");
+        System.out.printf("%25s - %-5s%n","x","Wyjście");
+        System.out.println();
+        System.out.printf("%22s: ","Wybierz");
     }
 }
