@@ -46,14 +46,14 @@ public class AppDB {
         System.out.println();
         System.out.printf("%22s: ","Wybierz");
 
-        String chose = "";
+        String choose = "";
         try {
-            chose = input.next();
+            choose = input.next();
         }catch (InputMismatchException exc){
             System.out.println("Błędne dane");
         }
 
-        switch(chose){
+        switch(choose){
 
             case "e": {
                 System.out.println("Edycja danych...");
