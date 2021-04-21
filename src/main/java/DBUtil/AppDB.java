@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class AppDB {
@@ -44,5 +45,30 @@ public class AppDB {
         System.out.printf("%25s - %-5s%n","x","Wyjście");
         System.out.println();
         System.out.printf("%22s: ","Wybierz");
+
+        String chose = "";
+        try {
+            chose = input.next();
+        }catch (InputMismatchException exc){
+            System.out.println("Błędne dane");
+        }
+
+        switch(chose){
+
+            case "e": {
+                System.out.println("Edycja danych...");
+            }break;
+
+            case "u": {
+                System.out.println("Usuwanie danych...");
+            }break;
+            case "x": {
+                System.out.println("Dziękuje za skorzystanie z programu.");
+                System.exit(0);
+            }break;
+
+            default:
+                System.out.println("Brak takiej opcji.");
+        }
     }
 }
