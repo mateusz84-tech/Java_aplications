@@ -1,12 +1,11 @@
 package beans.shopApp;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class Product {
 
-    private final String productName;
+    private String productName;
     private int quantity;
     private double price;
 
@@ -53,6 +52,10 @@ public class Product {
 
     public String getProductName() {
         return productName;
+    }
+
+    public void setProductName (String productName) {
+        this.productName = productName;
     }
 
     @Override

@@ -2,24 +2,39 @@ package beans.shopApp;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.Scanner;
-import java.util.stream.Stream;
 
 public class Order {
 
-    private List<Product> productsList;
+    private List<Product> productsList = new ArrayList<>();
     private int numberOfProduct;
     public Order(){
-        productsList = new ArrayList<>();
+        this.productsList = List.of();
         this.numberOfProduct = 0;
     }
 
+    // metoda dodająca produkt, w sytuacji gdy dodawany produkt już istnieje zostaje zwiększona ilość
     public void addProduct(Product product){
-        productsList.add(product);
-        numberOfProduct++;
-        System.out.println("Dodano nową pozycję");
-        System.out.println(product.toString());
+
+        for(Product item : productsList){
+            if(item.getProductName().equalsIgnoreCase(product.getProductName())){
+                item.setQuantity(item.getQuantity() + product.getQuantity());
+            }
+            else{
+                productsList.add(product);
+                numberOfProduct++;
+                System.out.println("Dodano nową pozycję");
+                System.out.println(product);
+            }
+        }
+    }
+    // metoda wyświetlająca wszystkie produkty w zamówieniu
+    public void displayAllProductInOrder(){
+
+        for(Product item : productsList){
+            System.out.printf("%s %15.02f zł. %5d szt. %5.02f zł",
+                    item.getProductName(),item.getPrice(),item.getQuantity(),(item.getQuantity()*item.getPrice()));
+        }
     }
 
     public String calculateOrderValue(){
@@ -31,11 +46,6 @@ public class Order {
     }
     // metoda usuwająca pozycję z listy
     public void deleteProduct(String name){
-        for(Product product : productsList){
-            if(!product.getProductName().equals(name)){
-                break;
-            }
-        }
         productsList.removeIf(products -> products.getProductName().equals(name));
     }
 
@@ -57,7 +67,4 @@ public class Order {
             }
         }
     }
-
-
-
 }

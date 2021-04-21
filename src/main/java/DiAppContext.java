@@ -38,6 +38,7 @@ public class DiAppContext {
         order.addProduct(product);
         order.addProduct(product1);
         System.out.println(order.calculateOrderValue());
+        order.editProduct ("Cukier");
     }
 
 }
