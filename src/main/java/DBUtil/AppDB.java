@@ -36,6 +36,8 @@ public class AppDB {
 
         final String GET_ALL = "SELECT * FROM theaters";
 
+        final String EDIT_DATA = "UPDATE theaters SET name = ?, address = ?, city = ? WHERE id = ?";
+
         displayAll("db_mk",GET_ALL);
 
         System.out.println();
@@ -56,7 +58,51 @@ public class AppDB {
         switch(choose){
 
             case "e": {
+                String name = "";
+                String address = "";
+                String city = "";
+                int id = 0;
+                Scanner scan = new Scanner(System.in);
                 System.out.println("Edycja danych...");
+                System.out.print("Wpisz nową nazwę teatru: ");
+                try{
+                    name = scan.nextLine();
+                }catch (InputMismatchException exc){
+                    System.out.println("Błędne dane.");
+                }
+                System.out.print("Wpisz nowy adres:");
+                try{
+                    address = scan.nextLine();
+                }catch (InputMismatchException exc){
+                    System.out.println("Błęde dane.");
+                }
+                System.out.println("Wpisz miasto: ");
+                try{
+                    city = scan.nextLine();
+                }catch (InputMismatchException exc){
+                    System.out.println("Błędne dane.");
+                }
+                System.out.print("Wpisz id zmienianego rekordu: ");
+                try{
+                    id = scan.nextInt();
+                }catch (InputMismatchException exc){
+                    System.out.println("Błędne dane.");
+                }
+
+                try(Connection connection = DBUtil.conn("db_mk")){
+                    PreparedStatement edit = connection.prepareStatement(EDIT_DATA);
+                    edit.setString(1,name);
+                    edit.setString(2,address);
+                    edit.setString(3,city);
+                    edit.setInt(4,id);
+
+                    edit.executeUpdate();
+                    System.out.println("Uaktualniono dane.");
+                    displayAll("db_mk",GET_ALL);
+
+                }catch (SQLException exc){
+                    exc.printStackTrace();
+                }
             }break;
 
             case "u": {
