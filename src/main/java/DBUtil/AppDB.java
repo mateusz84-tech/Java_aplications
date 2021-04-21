@@ -11,7 +11,7 @@ public class AppDB {
 
     // funkcja wyświetlająca dane z tabeli z bazy danych
     public static void displayAll(String dbName, String query){
-        try(Connection connect = DBUtil.conn("db_mk")){
+        try(Connection connect = DBUtil.conn(dbName)){
             PreparedStatement preparedStatement = connect.prepareStatement(query);
             ResultSet theaters = preparedStatement.executeQuery();
             System.out.printf("%s %20s %30s %30s%n","ID","NAZWA","ADRES","MIASTO");
@@ -106,6 +106,7 @@ public class AppDB {
             }break;
 
             case "u": {
+                // TODO Usunąąć z funkcji łaczącej się z bazą wpisywanie hasła, mało wygodne przy kilkukrotnym wywoływaniu funkcji
                 System.out.println("Usuwanie danych...");
             }break;
             case "x": {
