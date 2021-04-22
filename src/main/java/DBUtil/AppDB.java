@@ -1,9 +1,6 @@
 package DBUtil;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -30,6 +27,31 @@ public class AppDB {
             exc.printStackTrace();
         }
     }
+
+    // funkcja wyswietlająca dane z tabeli - uniwerslana
+    public static void displayAllData(String dbName, String query){
+        try(Connection connection = DBUtil.conn(dbName)){
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            ResultSetMetaData metaData = resultSet.getMetaData();
+            int numOfColumn = metaData.getColumnCount();
+            // wyświetlenie nazw tabeli z zamianą na wielkie litery
+            for(int i=1; i<=numOfColumn; i++){
+                System.out.printf("%-30s\t",metaData.getColumnName(i).toUpperCase());
+            }
+            System.out.println();
+            // wyświetlenie wierszy z tabeli
+            while(resultSet.next()){
+                for(int i=1; i<=numOfColumn; i++){
+                    System.out.printf("%-30s\t",resultSet.getObject(i));
+                }
+                System.out.println();
+            }
+        }catch (SQLException exc){
+            exc.printStackTrace();
+        }
+    }
     public static void main(String[] args) {
 
         Scanner input = new Scanner(System.in);
@@ -40,7 +62,7 @@ public class AppDB {
 
         final String DELETE_DATA = "DELETE FROM theaters WHERE id = ?";
 
-        displayAll("db_mk",GET_ALL);
+        displayAllData("db_mk",GET_ALL);
 
         System.out.println();
         System.out.printf("%45s%n","=========== MENU ===========");
@@ -72,13 +94,13 @@ public class AppDB {
                 }catch (InputMismatchException exc){
                     System.out.println("Błędne dane.");
                 }
-                System.out.print("Wpisz nowy adres:");
+                System.out.print("Wpisz nowy adres: ");
                 try{
                     address = scan.nextLine();
                 }catch (InputMismatchException exc){
                     System.out.println("Błęde dane.");
                 }
-                System.out.println("Wpisz miasto: ");
+                System.out.print("Wpisz miasto: ");
                 try{
                     city = scan.nextLine();
                 }catch (InputMismatchException exc){
