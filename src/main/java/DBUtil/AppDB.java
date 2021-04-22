@@ -38,6 +38,8 @@ public class AppDB {
 
         final String EDIT_DATA = "UPDATE theaters SET name = ?, address = ?, city = ? WHERE id = ?";
 
+        final String DELETE_DATA = "DELETE FROM theaters WHERE id = ?";
+
         displayAll("db_mk",GET_ALL);
 
         System.out.println();
@@ -106,8 +108,25 @@ public class AppDB {
             }break;
 
             case "u": {
-                // TODO Usunąąć z funkcji łaczącej się z bazą wpisywanie hasła, mało wygodne przy kilkukrotnym wywoływaniu funkcji
                 System.out.println("Usuwanie danych...");
+                Scanner scanner = new Scanner(System.in);
+                System.out.print("Wpisz numer id do usunięcia z bazy: ");
+                int id = 0;
+                try{
+                    id = scanner.nextInt();
+                }catch (InputMismatchException exc){
+                    System.out.println("Błędne dane");
+                }
+                try(Connection connection = DBUtil.conn("db_mk")){
+                    PreparedStatement delete = connection.prepareStatement(DELETE_DATA);
+                    delete.setInt(1, id);
+                    delete.executeUpdate();
+                    System.out.println("Dane zostały usunięte.");
+
+                    displayAll("db_mk",GET_ALL);
+                }catch (SQLException exc){
+                    exc.printStackTrace();
+                }
             }break;
             case "x": {
                 System.out.println("Dziękuje za skorzystanie z programu.");
